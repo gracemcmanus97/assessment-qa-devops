@@ -1,9 +1,21 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require ('cors')
 const app = express()
 const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
 const path = require ('path')
+const{ROLLBAR_TOKEN} = process.env
+
+var Rollbar = require('rollbar')
+var rollbar = new Rollbar({
+  accessToken: 'b50d3f9dd13a4193a7bb2f75fbe493bb',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+// record a generic message and send it to Rollbar
+rollbar.log('Hello world!')
 
 app.use(express.json())
 app.use(express.static('public'))
