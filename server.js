@@ -1,9 +1,13 @@
 const express = require('express')
+const cors = require ('cors')
 const app = express()
 const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
+const path = require ('path')
 
 app.use(express.json())
+app.use(express.static('public'))
+app.use(cors())
 
 app.get('/api/robots', (req, res) => {
     try {
